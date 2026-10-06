@@ -63,3 +63,7 @@ MMC3/mapper 4를 유지하고 PRG와 CHR을 각각 256 KiB로 확장했습니다
 ## 기여
 
 [CONTRIBUTING.md](CONTRIBUTING.md)를 먼저 읽어 주세요. 게임/폰트 파일을 Issue·PR·Actions artifact에 첨부하지 않습니다. 코드와 연구 문서의 재사용 범위, 게임/폰트/번역의 권리 구분은 [권리 안내](docs/RIGHTS.ko.md)에 정리했습니다.
+
+## 라이선스
+
+자체 도구 코드와 기술 문서는 [MIT 라이선스](LICENSE)로 제공합니다. 한국어 번역문·원작 유래 자료·외부 폰트는 적용 대상에서 제외합니다. 자세한 [적용 범위](docs/RIGHTS.ko.md#라이선스-적용-범위)를 확인하세요.

@@ -1,13 +1,14 @@
 {
   "profile": "localization_source",
   "legal_clearance": false,
-  "source_license": "undecided",
+  "source_license": "MIT",
   "files": [
     ".gitattributes",
     ".githooks/pre-commit",
     ".github/workflows/source-check.yml",
     ".gitignore",
     "CONTRIBUTING.md",
+    "LICENSE",
     "README.md",
     "config/font_sources.json",
     "config/reference_build.json",
@@ -49,5 +50,6 @@
     "translation/graphics.csv",
     "translation/layout_overrides.json",
     "translation/text.csv"
-  ]
+  ],
+  "source_license_scope": "Original tool code, repository automation and technical documentation only; excludes translations, game-derived material and third-party fonts."
 }
