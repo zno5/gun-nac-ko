@@ -1,0 +1,11 @@
+{
+  "target_sha256": "da74835ad0d531ecfcc4425c135a814ddba4bfe7fd32874d9749a03a549aa6d0",
+  "ips_sha256": "737c6cae6960704b06430a5c7f81420106775d0370c1ce9806414a205ea7f84b",
+  "target_bytes": 524304,
+  "editable_input_sha256": {
+    "translation/display_overrides.json": "0bdd944df504187ff993c9bdc6061ba2c056246b93c572ec88fb92856eafcddc",
+    "translation/graphics.csv": "8223c007a5b13657a74e57b90494c9669f6f791e1f06da246528db29359a0502",
+    "translation/layout_overrides.json": "4f7b79d6b363c2e08e777baada9788a6c174d1ea20ab96cb95dd60f60cef7dcc",
+    "translation/text.csv": "3f17778fae8005f88ffaccc6d24f205d15417a79c075439c6fe913322d340938"
+  }
+}

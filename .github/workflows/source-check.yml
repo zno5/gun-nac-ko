@@ -1,0 +1,14 @@
+name: Public source checks (no ROM or fonts)
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - run: python3 tools/audit_public.py --tracked
+      - run: python3 tools/check_sources.py

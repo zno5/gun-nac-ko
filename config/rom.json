@@ -1,0 +1,12 @@
+{
+  "name": "Gun Nac (Japan)",
+  "format": "iNES, 16-byte header included; no trainer",
+  "bytes": 262160,
+  "crc32": "F39B41A4",
+  "md5": "029daa688d2c51a296eb4e7fed953d0d",
+  "sha1": "48ce296d9ddb59abf13ceccde777a3e43c27ff61",
+  "sha256": "08ead6a2a83a7c476ac76a067a04055a6f68fe5b50248ea873d00305111da44d",
+  "prg_bytes": 131072,
+  "chr_bytes": 131072,
+  "mapper": 4
+}

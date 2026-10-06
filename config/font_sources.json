@@ -1,0 +1,52 @@
+{
+  "fonts": [
+    {
+      "id": "galmuri",
+      "name": "Galmuri11-Condensed",
+      "role": "Body/settings/shop/credits Hangul",
+      "destination": "assets/fonts/Galmuri11-Condensed.bdf",
+      "url": "https://raw.githubusercontent.com/quiple/galmuri/71e1cacf1437a11220307120e63e30bc275312d4/dist/Galmuri11-Condensed.bdf",
+      "sha256": "5adbdedb3d118e99cc7e114b746b3cf6f6a46a4642e0ff215d6a431e55901995",
+      "license": "OFL-1.1",
+      "license_url": "https://github.com/quiple/galmuri/blob/71e1cacf1437a11220307120e63e30bc275312d4/ofl.md"
+    },
+    {
+      "id": "dos_myungjo",
+      "name": "DOSMyungjo",
+      "role": "Stage names",
+      "destination": "assets/fonts/dos/DOSMyungjo-16.bdf",
+      "url": "https://raw.githubusercontent.com/hurss/fonts/3fc1181c6b4af095206068188c3ea966d6738add/bdf/DOSMyungjo-16.bdf",
+      "sha256": "392a67846659b06557076daf6e28f838c603a7d87a504953dbeb4113b378e39c",
+      "license": "MIT-based with reserved-font-name notice; keep original license",
+      "license_url": "https://github.com/hurss/fonts/blob/3fc1181c6b4af095206068188c3ea966d6738add/LICENSE.txt"
+    },
+    {
+      "id": "dos_iyagi",
+      "name": "DOSIyagiBoldface",
+      "role": "Picture captions",
+      "destination": "assets/fonts/dos/DOSIyagiBoldface-16.bdf",
+      "url": "https://raw.githubusercontent.com/hurss/fonts/3fc1181c6b4af095206068188c3ea966d6738add/bdf/DOSIyagiBoldface-16.bdf",
+      "sha256": "f748fc59cc25ef0f327b741789e0e28f150c07c9445e7f16491a1448ff3bb204",
+      "license": "MIT-based with reserved-font-name notice; keep original license",
+      "license_url": "https://github.com/hurss/fonts/blob/3fc1181c6b4af095206068188c3ea966d6738add/LICENSE.txt"
+    }
+  ],
+  "notices": [
+    {
+      "destination": "assets/fonts/GALMURI_OFL.md",
+      "url": "https://raw.githubusercontent.com/quiple/galmuri/71e1cacf1437a11220307120e63e30bc275312d4/ofl.md",
+      "sha256": "9a9e5a342c430c3fcf01a408b680f4405d5bf4ac659c931be35f8a1b27ea69c9"
+    },
+    {
+      "destination": "assets/fonts/dos/LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/hurss/fonts/3fc1181c6b4af095206068188c3ea966d6738add/LICENSE.txt",
+      "sha256": "87d1b41d94b1ea31d9eacf415d2e851fa39c539d16baf55d46788d1b92e00438"
+    },
+    {
+      "destination": "assets/fonts/dos/README.md",
+      "url": "https://raw.githubusercontent.com/hurss/fonts/3fc1181c6b4af095206068188c3ea966d6738add/README.md",
+      "sha256": "7200f9e559b6df2f72d610078f48dd1c73371d9dec0d449c952c19d3084cbb0c"
+    }
+  ],
+  "policy": "No font files distributed; download from pinned upstream revisions into ignored local paths"
+}

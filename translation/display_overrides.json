@@ -1,0 +1,37 @@
+{
+  "0x001489": {
+    "text": "AREA-",
+    "reason": "원문의 영어 사용이 좋아 보임",
+    "reviewed_ko_text": "구역"
+  },
+  "0x001491": {
+    "text": "SOUND TEST-",
+    "reason": "원문의 영어 사용이 좋아 보임",
+    "reviewed_ko_text": "소리 듣기"
+  },
+  "0x00149F": {
+    "text": "GAME LEVEL-",
+    "reason": "원문의 영어 사용이 좋아 보임",
+    "reviewed_ko_text": "난이도"
+  },
+  "0x0014B9": {
+    "text": "WEAPON-{무기번호}",
+    "reason": "원문의 영어 사용이 좋아 보임",
+    "reviewed_ko_text": "무기: {무기번호}"
+  },
+  "0x0014C4": {
+    "text": "BOMBER-{폭탄번호}",
+    "reason": "원문의 영어 사용이 좋아 보임",
+    "reviewed_ko_text": "폭탄: {폭탄번호}"
+  },
+  "0x001532": {
+    "text": "DEATH",
+    "reason": "원문의 영어 사용이 좋아 보임",
+    "reviewed_ko_text": "죽음 있음"
+  },
+  "0x00153E": {
+    "text": "NON DEATH",
+    "reason": "원문의 영어 사용이 좋아 보임",
+    "reviewed_ko_text": "무적"
+  }
+}

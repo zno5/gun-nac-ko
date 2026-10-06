@@ -1,0 +1,97 @@
+[
+  {
+    "pointer_file": "0x0028A2",
+    "cpu_target": "0xA97D",
+    "text_file": "0x00298D"
+  },
+  {
+    "pointer_file": "0x0028B2",
+    "cpu_target": "0xA9AD",
+    "text_file": "0x0029BD"
+  },
+  {
+    "pointer_file": "0x0028C5",
+    "cpu_target": "0xA9C8",
+    "text_file": "0x0029D8"
+  },
+  {
+    "pointer_file": "0x0028D8",
+    "cpu_target": "0xAA1B",
+    "text_file": "0x002A2B"
+  },
+  {
+    "pointer_file": "0x0028DE",
+    "cpu_target": "0xAA84",
+    "text_file": "0x002A94"
+  },
+  {
+    "pointer_file": "0x0028F1",
+    "cpu_target": "0xAABB",
+    "text_file": "0x002ACB"
+  },
+  {
+    "pointer_file": "0x0028F7",
+    "cpu_target": "0xAB04",
+    "text_file": "0x002B14"
+  },
+  {
+    "pointer_file": "0x0028FD",
+    "cpu_target": "0xAB80",
+    "text_file": "0x002B90"
+  },
+  {
+    "pointer_file": "0x002910",
+    "cpu_target": "0xABE0",
+    "text_file": "0x002BF0"
+  },
+  {
+    "pointer_file": "0x002918",
+    "cpu_target": "0xAC49",
+    "text_file": "0x002C59"
+  },
+  {
+    "pointer_file": "0x002929",
+    "cpu_target": "0xAC72",
+    "text_file": "0x002C82"
+  },
+  {
+    "pointer_file": "0x00293A",
+    "cpu_target": "0xACDA",
+    "text_file": "0x002CEA"
+  },
+  {
+    "pointer_file": "0x002940",
+    "cpu_target": "0xAD26",
+    "text_file": "0x002D36"
+  },
+  {
+    "pointer_file": "0x002946",
+    "cpu_target": "0xAD6B",
+    "text_file": "0x002D7B"
+  },
+  {
+    "pointer_file": "0x002959",
+    "cpu_target": "0xADB1",
+    "text_file": "0x002DC1"
+  },
+  {
+    "pointer_file": "0x00296C",
+    "cpu_target": "0xADF6",
+    "text_file": "0x002E06"
+  },
+  {
+    "pointer_file": "0x002972",
+    "cpu_target": "0xAE24",
+    "text_file": "0x002E34"
+  },
+  {
+    "pointer_file": "0x002978",
+    "cpu_target": "0xAE76",
+    "text_file": "0x002E86"
+  },
+  {
+    "pointer_file": "0x002988",
+    "cpu_target": "0xAE7E",
+    "text_file": "0x002E8E"
+  }
+]
