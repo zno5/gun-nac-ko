@@ -35,7 +35,7 @@ python3 tools/build.py --rom "/path/to/Gun Nac (Japan).nes" --check-reference
 | SHA-1 | `48ce296d9ddb59abf13ceccde777a3e43c27ff61` |
 | SHA-256 | `08ead6a2a83a7c476ac76a067a04055a6f68fe5b50248ea873d00305111da44d` |
 
-기계 판독용 값: [config/rom.json](config/rom.json). 현재 검토판 결과는 524,304바이트, SHA-256 `da74835ad0d531ecfcc4425c135a814ddba4bfe7fd32874d9749a03a549aa6d0`입니다. [기준 빌드 기록](config/reference_build.json)
+기계 판독용 값: [config/rom.json](config/rom.json). 현재 검토판 결과는 524,304바이트, SHA-256 `2172180d38969212372aff8400191c26ac378bc6abc7432fe0ba9edbf0610813`입니다. [기준 빌드 기록](config/reference_build.json)
 
 ## 편집과 문서
 
@@ -54,9 +54,9 @@ python3 tools/build.py --rom "/path/to/Gun Nac (Japan).nes" --check-reference
 
 ## 구현 범위
 
-오프닝·엔딩 본문, 설정, 스태프롤, 상점, 그림 자막 5개와 스테이지 이름 8개를 통합했습니다. 본문 계열은 Galmuri11-Condensed, 스테이지는 도스명조 16px, 그림 자막은 도스이야기 16px를 사용합니다. 확인된 영문·숫자·기호는 로컬 원본 ROM의 글꼴을 재사용하는 B2 정책입니다.
+오프닝·엔딩 본문, 설정, 스태프롤, 상점, 그림 자막 5개와 스테이지 이름 9개(AREA-0 포함)를 통합했습니다. 본문 계열은 Galmuri11-Condensed, 스테이지는 도스명조 16px, 그림 자막은 도스이야기 16px를 사용합니다. 확인된 영문·숫자·기호는 로컬 원본 ROM의 글꼴을 재사용하는 B2 정책입니다.
 
-그래픽 작업표 30개 중 13개를 적용하고, 원본 유지로 검토된 17개를 유지했습니다. 그림 안의 일본어를 지우는 방식이 아니라 그림 위에 별도 한국어 자막을 놓는 방식입니다. 일반·하드·이판사판 엔딩 그림은 16px 내렸습니다.
+그래픽 작업표 31개 중 14개를 적용하고, 원본 유지로 검토된 17개를 유지했습니다. 그림 안의 일본어를 지우는 방식이 아니라 그림 위에 별도 한국어 자막을 놓는 방식입니다. 일반·하드·이판사판 엔딩 그림은 16px 내렸습니다.
 
 MMC3/mapper 4를 유지하고 PRG와 CHR을 각각 256 KiB로 확장했습니다. 마지막 스테이지 이름 작업은 추가 확장 없이 처리했습니다. 승인된 번역 범위는 구현됐으며, 최종 화면 검토와 전 구역 플레이 테스트는 별도입니다.
 

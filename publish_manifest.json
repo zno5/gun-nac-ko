@@ -41,6 +41,7 @@
     "tools/run_mesen.py",
     "tools/verify_caption_cards.py",
     "tools/verify_credits_runtime.py",
+    "tools/verify_credits_transition.py",
     "tools/verify_settings_runtime.py",
     "tools/verify_shop_runtime.py",
     "tools/verify_stage_clear.py",

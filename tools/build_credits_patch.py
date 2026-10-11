@@ -100,7 +100,18 @@ def patch(cpu,before,after):
 patch(0x95a6,b'\xf1',b'\x00');patch(0x95aa,b'\x97',b'\x80')
 patch(0x9642,bytes.fromhex('a5 2f 85'),b'\x4c'+struct.pack('<H',a.labels['event']))
 # Shared story IRQ already identifies credits by $30 < $A8.
-patch(0xa9c5,b'\x7c',b'\x8c')
+# Retain the ending font while the three leading blank credits events scroll
+# the last story page out. Switch before the first nonblank event is visible.
+assert [e['kind'] for e in events[:3]]==['blank']*3 and events[3]['kind']!='blank'
+firq=Asm(0xae60)
+firq.emit(0xa5,0x30,0xc9,0x80);firq.branch(0xd0,'credits')
+firq.emit(0xa5,0x2f,0xc9,0x04);firq.branch(0xb0,'credits')
+firq.emit(0xa9,0x84);firq.abs(0x4c,0xa9d1)
+firq.label('credits');firq.emit(0xa9,0x8c);firq.abs(0x4c,0xa9d1)
+font_transition=firq.finish();assert firq.base+len(font_transition)<=0xaeb1
+assert base[0xa9d1-0x7ff0:0xa9d4-0x7ff0]==bytes.fromhex('8d 01 80')
+rom[firq.base-0x7ff0:firq.base-0x7ff0+len(font_transition)]=font_transition
+patch(0xa9c4,bytes.fromhex('a9 7c 4c d1 a9'),bytes.fromhex('4c 60 ae ea ea'))
 dest=OUT/'Gun Nac (Korean credits prototype).nes';dest.write_bytes(rom)
 ips=bytearray(b'PATCH');i=0
 while i<len(rom):
@@ -116,6 +127,7 @@ while ips[pos:pos+3]!=b'EOF':
 assert applied==rom
 (OUT/'gun_nac_ko_credits.ips').write_bytes(ips)
 m=dict(scope='Opening, ending, settings and scrolling credits; original logos preserved',source_sha256=sha(source),base_settings_sha256=sha(base),target_sha256=sha(rom),source_csv_sha256=sha(csv_bytes),font_sha256=preview['font_sha256'],mapper=4,prg_size=262144,chr_size=262144,data_bank=18,data_bytes=len(data),font_banks=[0x8c,0x8e],font_tiles=len(patterns),injection_cpu=a.labels,injection_bytes=len(code),hooks=hooks,ips_roundtrip=True,end_pointer=hex(end_ptr),events=events)
+m['font_transition_cpu']=hex(firq.base);m['font_transition_bytes']=len(font_transition);m['font_transition_rule']='Keep ending font for initial credits pointers $8000..$8003; switch at first text event'
 m['font_policy']=POLICY
 (OUT/'manifest.json').write_text(json.dumps(m,ensure_ascii=False,indent=2));(OUT/'credits.chr').write_bytes(font);(OUT/'glyphs.json').write_text(json.dumps(glyphs,ensure_ascii=False,indent=2));(OUT/'injection.bin').write_bytes(code)
 print(json.dumps({k:v for k,v in m.items() if k!='events'},ensure_ascii=False,indent=2))

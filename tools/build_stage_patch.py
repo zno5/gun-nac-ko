@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'build/stage_patch';OUT.mkdir(
 sha=lambda b:hashlib.sha256(b).hexdigest()
 source=next((ROOT/'jp').glob('*.nes')).read_bytes();base=(ROOT/'build/caption_patch/Gun Nac (Korean captions prototype).nes').read_bytes()
 bm=json.loads((ROOT/'build/caption_patch/manifest.json').read_text());assert sha(base)==bm['target_sha256'];assert sha(source)==bm['source_sha256']
-workbook=ROOT/'translation/graphics.csv';rows=list(csv.DictReader(workbook.open(encoding='utf-8-sig')));stages=[r for r in rows if r['id'].startswith('stage_')];assert len(stages)==8
+workbook=ROOT/'translation/graphics.csv';rows=list(csv.DictReader(workbook.open(encoding='utf-8-sig')));stages=[r for r in rows if r['id'].startswith('stage_')];assert {r['id'] for r in stages}=={f'stage_{i}' for i in range(9)}
 assert sha(workbook.read_bytes())==bm['graphics_csv_sha256']
 assert sha((ROOT/'translation/text.csv').read_bytes())==bm['source_csv_sha256']
 fpath=ROOT/'assets/fonts/dos/DOSMyungjo-16.bdf';f=font(fpath);rom=bytearray(base)
@@ -30,7 +30,8 @@ for b,tile in patterns.items():rom[chrstart+tile*16:chrstart+tile*16+32]=b
 assert rom[chrstart:chrstart+0x100]==base[chrstart:chrstart+0x100] # AREA / CLEAR
 assert rom[chrstart+0x400:chrstart+0x1000]==base[chrstart+0x400:chrstart+0x1000]
 DATA=0xf400;data=bytearray(18);pages=[]
-for i,r in enumerate(stages,1):
+for r in stages:
+ i=int(r['id'].split('_')[1])
  ptr=DATA+len(data);data[i*2:i*2+2]=struct.pack('<H',ptr);entries=[];lines=[]
  for n,text in enumerate(r['ko_translation'].split('／')):
   width=sum(8 if c==' ' else 16 for c in text);x=(256-width)//2;y=104+n*24;lines.append(dict(text=text,x=x,y=y,width=width))
@@ -40,7 +41,7 @@ for i,r in enumerate(stages,1):
     data.extend([x,y-1,tile]);entries.append(dict(x=x,y=y,tile=tile));x+=8
  data.append(0);assert max(sum(e['y']==y for e in entries) for y in {e['y'] for e in entries})<=8
  pages.append(dict(id=r['id'],text=r['ko_translation'],lines=lines,sprites=entries))
-# Stage 0 has no normal intro; retain its legacy code path below.
+# AREA-0 also has an intro; its pointer uses slot zero of the same table.
 class Asm:
  def __init__(self,base):self.base=base;self.code=bytearray();self.labels={};self.fix=[]
  def emit(self,*b):self.code.extend(b)
@@ -51,7 +52,7 @@ class Asm:
   for off,n in self.fix:
    delta=self.labels[n]-(self.base+off+1);assert -128<=delta<128;self.code[off]=delta&255
   return self.code
-a=Asm(0xf340);a.label('render');a.abs(0xac,0x0180);a.branch(0xf0,'legacy');a.emit(0xc0,9);a.branch(0xb0,'legacy')
+a=Asm(0xf340);a.label('render');a.abs(0xac,0x0180);a.emit(0xc0,9);a.branch(0xb0,'legacy')
 a.abs(0xbe,0xd7b9);a.emit(0x86,0x06,0x98,0x0a,0xa8);a.abs(0xb9,DATA);a.emit(0x85,0x04);a.abs(0xb9,DATA+1);a.emit(0x85,0x05,0xa9,0,0x85,0x57,0xa0,0)
 a.label('loop');a.emit(0xb1,0x04);a.branch(0xf0,'done');a.emit(0x85,0x56,0xc8,0xb1,0x04,0x85,0x55,0xc8,0xb1,0x04,0x18,0x65,0x06,0x85,0x58,0xc8,0x98,0x48);a.abs(0x20,0xccff);a.emit(0x68,0xa8);a.branch(0xd0,'loop')
 a.label('done');a.abs(0x4c,0xd7a5)
@@ -80,7 +81,7 @@ while ips[p:p+3]!=b'EOF':
  applied[off:off+n]=ips[p:p+n];p+=n
 assert applied==rom
 m=dict(scope='All approved localization items integrated; DOSMyungjo stage names added',source_sha256=sha(source),base_sha256=sha(base),target_sha256=sha(rom),source_csv_sha256=bm['source_csv_sha256'],graphics_csv_sha256=sha(workbook.read_bytes()),font_sha256=sha(fpath.read_bytes()),font='DOSMyungjo 16px native BDF, baseline 14, x shift -1, shadow (+1,+1)',font_tiles_8x8=len(patterns)*2,unique_characters=len(letters),glyphs=letters,masks=masks,pages=pages,chr_file=hex(chrstart),hook_cpu='0xd772',priority_hook_cpu='0xe256',priority_scope='Only active stage intro ($0188=1..125); forward OAM allocation keeps names ahead of star sprites',code_cpu=hex(a.base),code_bytes=len(code),data_cpu=hex(DATA),data_bytes=len(data),mapper=4,prg_size=262144,chr_size=262144,ips_roundtrip=True,graphics_items_implemented=[r['id'] for r in rows if r['id'].startswith(('stage_','ending_','opening_'))],graphics_items_retained=[r['id'] for r in rows if '원본유지' in r['notes'] or r['id']=='logos'])
-assert len(m['graphics_items_implemented'])==13 and len(m['graphics_items_retained'])==17
+assert len(m['graphics_items_implemented'])==14 and len(m['graphics_items_retained'])==17
 (OUT/'manifest.json').write_text(json.dumps(m,ensure_ascii=False,indent=2)+'\n')
 for src,dst in [('LICENSE.txt','DOS_FONT_LICENSE.txt'),('README.md','DOS_FONT_README.md'),('provenance.json','DOS_FONT_PROVENANCE.json')]:
  if (fpath.parent/src).exists():shutil.copyfile(fpath.parent/src,OUT/dst)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""All eight real stage-intro render paths. Start-stage RAM is a test-only fixture."""
+"""All nine real stage-intro render paths. Start-stage RAM is a test-only fixture."""
 from pathlib import Path
 import argparse,json,hashlib
 from run_mesen import Runner, core_path
@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--rom',type=Path,default=ROOT/'build/stage_patch/Gun Nac (Korean).nes');ap.add_argument('--out',type=Path,default=ROOT/'build/runtime/stage_final');ap.add_argument('--baseline',action='store_true');args=ap.parse_args();out=args.out;out.mkdir(parents=True,exist_ok=True)
  m=json.loads((ROOT/'build/stage_patch/manifest.json').read_text());checks=[]
- for area in range(1,9):
+ for area in range(9):
   r=Runner(core_path(),out/f'area_{area}');r.load(args.rom)
   def frames(n,buttons=()):
    r.buttons=set(buttons)
@@ -25,7 +25,7 @@ def main():
   frames(1,[8]);r.capture(out/f'stage_{area}.png');ram=r.ram();oam=[list(ram[i:i+4]) for i in range(0x200,0x300,4)];banks=list(ram[0x1a3:0x1a9])
   record=dict(area=area,frame=r.frame,ram_area=ram[0x180],intro_counter=ram[0x188],banks=banks,oam=oam)
   if not args.baseline:
-   page=m['pages'][area-1];expected=[]
+   page=next(p for p in m['pages'] if p['id']==f'stage_{area}');expected=[]
    for line in page['lines']:
     x=line['x']
     for c in line['text']:

@@ -102,7 +102,7 @@ a.label('normal_irq');a.abs(0xad,0x0408);a.branch(0xd0,'irq_store');a.emit(0xa9,
 a.label('irq_store');a.abs(0x8d,0xc000);a.emit(0x60)
 a.label('story_picture_finish');a.abs(0x20,0xed31);a.abs(0xad,0x0400);a.emit(0xc9,0xa8);a.branch(0xf0,'opening_caption');a.emit(0xa9,clearcmd&255,0xa0,clearcmd>>8);a.abs(0x4c,0xebcc)
 a.label('opening_caption');a.emit(0xa9,openingcmd&255,0xa0,openingcmd>>8);a.abs(0x4c,0xebcc)
-code=a.finish();assert a.base+len(code)<=0xaeb1
+code=a.finish();assert a.base+len(code)<=0xae60 # credits font-transition routine starts at $AE60
 rom[a.base-0x7ff0:a.base-0x7ff0+len(code)]=code
 patch(0xa790,bytes.fromhex('ad 07 04'),b'\x4c'+struct.pack('<H',a.labels['picture_irq']))
 patch(0xa6a2,bytes.fromhex('20 31 ed'),b'\x20'+struct.pack('<H',a.labels['story_picture_finish']))
